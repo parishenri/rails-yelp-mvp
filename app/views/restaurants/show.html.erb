@@ -1,0 +1,29 @@
+<!-- app/views/restaurants/show.html.erb -->
+<div class="container">
+
+  <h1><%= @restaurant.name %></h1>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.category %></p>
+  <p><%= @restaurant.phone_number %></p>
+  <h3>List of reviews</h3>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+    <li><%= review.content %></li>
+    <li><%= review.rating %></li>
+    <% end %>
+  </ul>
+  <%= link_to 'back', restaurants_path %>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= simple_form_for [@restaurant, @review] do |f| %>
+        <div class="form-group">
+          <%= f.input :content %>
+          <%= f.input :rating %>
+          <%= f.submit "add a review", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
